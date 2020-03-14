@@ -39,12 +39,12 @@ public class TarefasController {
 		return "tarefa/lista";
 	}
 
-	@RequestMapping("removeTarefa")
-	public String remove(Tarefa tarefa) {
-		JdbcTarefaDao dao = new JdbcTarefaDao();
-		dao.remove(tarefa);
-		return "redirect:listaTarefas";
-	}
+//	@RequestMapping("removeTarefa")
+//	public String remove(Tarefa tarefa) {
+//		JdbcTarefaDao dao = new JdbcTarefaDao();
+//		dao.remove(tarefa);
+//		return "redirect:listaTarefas";
+//	}
 
 	@RequestMapping("mostraTarefa")
 	public String mostra(Long id, Model model) {
@@ -60,13 +60,14 @@ public class TarefasController {
 		return "redirect:listaTarefas";
 	}
 
-	@ResponseBody
 	@RequestMapping("finalizaTarefa")
-	public void finaliza(Long id) {
+	public String finaliza(Long id, Model model) {
 		JdbcTarefaDao dao = new JdbcTarefaDao();
 		dao.finaliza(id);
+		model.addAttribute("tarefa", dao.buscaPorId(id));
+		return "tarefa/finalizada";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("removeTarefa")
 	public void remove(Long id) {
