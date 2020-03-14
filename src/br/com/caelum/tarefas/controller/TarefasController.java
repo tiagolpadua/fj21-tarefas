@@ -3,6 +3,7 @@ package br.com.caelum.tarefas.controller;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,6 +19,7 @@ public class TarefasController {
 		return "tarefa/formulario";
 	}
 
+	// http://localhost:8080/fj21-tarefas/adicionaTarefa
 	@RequestMapping("adicionaTarefa")
 	public String adiciona(@Valid Tarefa tarefa, BindingResult result) {
 		if (result.hasFieldErrors("descricao")) {
@@ -27,4 +29,13 @@ public class TarefasController {
 		dao.adiciona(tarefa);
 		return "tarefa/adicionada";
 	}
+	
+	// http://localhost:8080/fj21-tarefas/listaTarefas
+	@RequestMapping("listaTarefas")
+	public String lista(Model model) {
+		JdbcTarefaDao dao = new JdbcTarefaDao();
+		model.addAttribute("tarefas", dao.lista());
+		return "tarefa/lista";
+	}
+
 }
