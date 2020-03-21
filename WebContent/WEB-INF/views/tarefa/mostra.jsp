@@ -6,6 +6,7 @@
 	<link href="<c:url value="/resources/css/jquery.css" />" rel="stylesheet">
 	<script src="<c:url value="/resources/js/jquery.js" />"></script>
 	<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
+    <link type="text/css" href="resources/css/tarefas.css" rel="stylesheet" />
 </head>
 <body>
 	<h3>Alterar tarefa - ${tarefa.id}</h3>
